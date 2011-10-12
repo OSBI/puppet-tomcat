@@ -44,10 +44,11 @@ class tomcat::debian inherits tomcat::package {
   File["/usr/share/tomcat"] {
     path => $tomcat_home,
   }
-  File["/usr/share/tomcat6/logs"]{
+  
+  File["/usr/share/tomcat6/logs"] {
   	ensure => directory,
-  	require => Package["tomcat"],
   }
+  
   File["/etc/init.d/tomcat"] {
     path => "/etc/init.d/${tomcat}",
   }
