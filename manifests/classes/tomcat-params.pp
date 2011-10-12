@@ -43,7 +43,7 @@ class tomcat::params {
         "Santiago" => "6",
       }
       "Ubuntu" => $lsbdistcodename ? {
-       "natty" => "6.
+       "natty" => "6,
        }
     }
 
