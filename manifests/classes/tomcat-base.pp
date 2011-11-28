@@ -2,7 +2,7 @@
 
 == Class: tomcat::base
 
-Base class from which others inherit. It shouldn't be necessary to include it
+Base class from which others inherit. It shouldnt be necessary to include it
 directly.
 
 Class variables:
@@ -21,7 +21,9 @@ class tomcat::base {
     groups => $tomcat_groups? {
       ''      => undef,
       default => $tomcat_groups,
-    }
+    },
+    home => "/home/tomcat",
+    managehome => true,  
   }
 
   file { "/var/log/tomcat":
