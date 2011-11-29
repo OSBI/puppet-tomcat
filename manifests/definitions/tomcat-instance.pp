@@ -385,7 +385,7 @@ define tomcat::instance($ensure="present",
     mode   => 754,
     before => Service["tomcat-${name}"],
   }
-
+    $alter_memorysize = $memorysize_mb/2
   # User customized JVM options
   file {"${basedir}/bin/setenv-local.sh":
     ensure  => $present,
