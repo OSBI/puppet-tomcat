@@ -1,0 +1,11 @@
+name 'Analytical Labs-tomcat'
+version '1.0'
+
+author 'Tom Barber'
+license ''
+project_page ''
+source ''
+summary ''
+description ''
+dependency 'Analytical Labs/sudo', '==1.0'
+dependency 'Analytical Labs/archive', '==1.0'
