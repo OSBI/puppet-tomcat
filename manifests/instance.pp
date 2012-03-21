@@ -44,6 +44,7 @@ Parameters:
   /srv/tomcat/$name/conf/, because some webapps require the ability to write
   their own config files. Defaults to 2570 (writeable only by $group members).
 - *server_xml_file*: can be used to set a specific server.xml file
+- *web_xml_file*: can be used to set a specific web.xml file
 - *webapp_mode*: can be used to change the permissions on
   /srv/tomcat/$name/webapps/. Defaults to 2770 (readable and writeable by
   $group members and tomcat himself, for auto-deploy).
@@ -97,6 +98,7 @@ define tomcat::instance($ensure="present",
                         $ajp_address=false,
                         $conf_mode="",
                         $server_xml_file="",
+                        $web_xml_file="",
                         $webapp_mode="",
                         $java_home="",
                         $sample=undef,
@@ -147,6 +149,8 @@ define tomcat::instance($ensure="present",
       port     => $http_port,
       manage   => $manage,
       address  => $http_address,
+      group    => $group,
+      owner    => $owner
     }
 
     tomcat::connector{"ajp-${ajp_port}-${name}":
@@ -159,6 +163,8 @@ define tomcat::instance($ensure="present",
       port     => $ajp_port,
       manage   => $manage,
       address  => $ajp_address,
+      group    => $group,
+      owner    => $owner
     }
 
   } else {
@@ -207,6 +213,9 @@ define tomcat::instance($ensure="present",
   if $tomcat::params::type == "source" {
     $catalinahome = "/opt/apache-tomcat"
   }
+
+  # Define a version string for use in templates
+  $tomcat_version_str = "${tomcat::params::maj_version}_${tomcat::params::type}"
 
   # Define default JAVA_HOME used in tomcat.init.erb
   if $java_home == "" {
@@ -299,7 +308,14 @@ define tomcat::instance($ensure="present",
           owner   => $owner,
           group   => $group,
           mode    => $filemode,
-          content => template("tomcat/web.xml.erb"),
+          source  => $web_xml_file? {
+            ""      => undef,
+            default => $web_xml_file,
+          },
+          content => $web_xml_file? {
+            ""      => template("tomcat/web.xml.erb"),
+            default => undef,
+          },
           before  => Service["tomcat-${name}"],
           notify  => $manage? {
             true    => Service["tomcat-${name}"],
@@ -352,7 +368,7 @@ define tomcat::instance($ensure="present",
           owner   => "tomcat",
           group   => $group,
           mode    => 0460,
-          source  => "puppet:///tomcat/sample.war",
+          source  => "puppet:///modules/tomcat/sample.war",
           require => File["${basedir}/webapps"],
           before => Service["tomcat-${name}"],
         }
