@@ -43,8 +43,8 @@ class tomcat::params {
         "Santiago" => "6",
       },
       "Ubuntu" => $lsbdistcodename ? {
-       "natty" => "6",
-       }
+        "precise" => "6",
+      }
     }
 
     # it would be better to set the distribution tomcat-version!

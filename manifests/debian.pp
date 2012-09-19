@@ -17,9 +17,9 @@ Usage:
 class tomcat::debian inherits tomcat::package {
 
   # avoid partial configuration on untested-debian-releases
-  #if $lsbdistcodename !~ /^(lenny|squeeze)$/ {
-  #  fail "class ${name} not tested on ${operatingsystem}/${lsbdistcodename}"
-  #}
+  if $lsbdistcodename !~ /^(lenny|squeeze|precise)$/ {
+    fail "class ${name} not tested on ${operatingsystem}/${lsbdistcodename}"
+  }
 
   $tomcat = "tomcat6"
   $tomcat_home = "/usr/share/tomcat6"
