@@ -102,6 +102,7 @@ define tomcat::instance($ensure="present",
                         $webapp_mode="",
                         $java_home="",
                         $sample=undef,
+			$zapcat=true,
                         $setenv=[],
                         $connector=[],
                         $executor=[],
@@ -359,6 +360,13 @@ define tomcat::instance($ensure="present",
           group  => $group,
           mode   => 2770,
           before => Service["tomcat-${name}"];
+	"${basefir}/webapps/zapcat.zip":
+	  ensure => file,
+	  owner  => "tomcat",
+	  group  => $group,
+          mode   => $dirmode,
+	  before => Service["tomcat-${name}"];
+	  requires => "${basedir}/webapps"
       }
 
       if $sample {
@@ -375,7 +383,24 @@ define tomcat::instance($ensure="present",
           require => File["${basedir}/webapps"],
           before => Service["tomcat-${name}"],
         }
-      }
+      }	
+      if $zapcat {
+
+        # Deploy zapcat:
+        # http://localhost:8080/zapcat
+        #
+        file { "${basedir}/webapps/zapcat.war":
+          ensure  => present,
+          owner   => "tomcat",
+          group   => $group,
+          mode    => 0460,
+          source  => "puppet:///modules/tomcat/zapcat-1.2.war",
+          require => File["${basedir}/webapps"],
+          before => Service["tomcat-${name}"],
+        }
+
+	}
+
     }
     absent: {
       file {$basedir:
