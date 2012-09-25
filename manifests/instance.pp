@@ -360,13 +360,6 @@ define tomcat::instance($ensure="present",
           group  => $group,
           mode   => 2770,
           before => Service["tomcat-${name}"];
-	"${basefir}/webapps/zapcat.zip":
-	  ensure => file,
-	  owner  => "tomcat",
-	  group  => $group,
-          mode   => $dirmode,
-	  before => Service["tomcat-${name}"];
-	  requires => "${basedir}/webapps"
       }
 
       if $sample {
