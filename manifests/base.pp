@@ -22,7 +22,7 @@ class tomcat::base {
       ''      => undef,
       default => $tomcat_groups,
     },
-    home => "/home/tomcat",
+    home => "/home/users/tomcat",
     managehome => true,  
   }
 
