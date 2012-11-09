@@ -14,16 +14,18 @@ class tomcat::base {
 
   user{"tomcat":
     ensure => present,
-    uid    => $tomcat_uid? {
-      ''      => undef,
+    uid => $tomcat_uid? {
+      '' => undef,
       default => $tomcat_uid,
     },
     groups => $tomcat_groups? {
-      ''      => undef,
+      '' => undef,
       default => $tomcat_groups,
-    },
-#    home => "/home/users/tomcat",
-#    managehome => true,  
+    }
+  }
+  
+  group{"tomcat":
+    ensure => present
   }
 
   file { "/var/log/tomcat":

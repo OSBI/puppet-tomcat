@@ -21,7 +21,7 @@
     "files/setclasspath.sh-6.0.24": "3d1f7d7dad1a013caf9969bfdcb17362",
     "files/zapcat-1.2.war": "7efa024e9d9ba28ce2ba59f10d535ab9",
     "manifests/administration.pp": "d4580572068a93f5e53460794c570d8f",
-    "manifests/base.pp": "dff3d787d560230ac3a5496024ceb984",
+    "manifests/base.pp": "d84ce95584d3c187f870d18721b53b0c",
     "manifests/connector.pp": "87cae0a0681da6a39f7c8e3124c18aa7",
     "manifests/debian.pp": "daa37457a012369b3355c565d762cef2",
     "manifests/executor.pp": "e8ceef35dd0e7b6317cd515979ddcfa7",
