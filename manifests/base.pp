@@ -22,8 +22,8 @@ class tomcat::base {
       ''      => undef,
       default => $tomcat_groups,
     },
-    home => "/home/users/tomcat",
-    managehome => true,  
+#    home => "/home/users/tomcat",
+#    managehome => true,  
   }
 
   file { "/var/log/tomcat":
