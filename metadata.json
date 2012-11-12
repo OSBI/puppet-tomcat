@@ -46,7 +46,7 @@
     "templates/executor.xml.erb": "549e2b25cab34e753684b02136fa79c5",
     "templates/server.xml.tomcat55.erb": "ed3e7936defdac217678bfa56ccd7831",
     "templates/server.xml.tomcat6.erb": "afefc7c42cd9fa8640ff5358457f23af",
-    "templates/setenv-local.sh.erb": "101bad5cb472c442eeaabe18c62aa270",
+    "templates/setenv-local.sh.erb": "2a7345e64ff0304f5bec7d6223d1a593",
     "templates/setenv.sh.erb": "69750fab7e6204f15b5eee6ffc9916ef",
     "templates/sudoers.tomcat.erb": "6b145bbc65e286688a150999f6a8d8e4",
     "templates/tomcat.init.erb": "fd834a5199eaf5b155d07d8644e0ab9e",
