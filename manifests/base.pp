@@ -25,7 +25,8 @@ class tomcat::base {
   }
   
   group{"tomcat":
-    ensure => present
+    ensure => present,
+    require => User["tomcat"],
   }
 
   file { "/var/log/tomcat":
