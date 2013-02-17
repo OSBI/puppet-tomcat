@@ -24,7 +24,7 @@ class tomcat::juli {
 $tomcat_home = "/opt/apache-tomcat-${tomcat::params::version}"
   file { "${tomcat_home}/extras/":
     ensure  => directory,
-    require => File[$tomcat_home],
+#    require => File[$tomcat_home],
   }
 
   archive::download { "tomcat-juli.jar":
