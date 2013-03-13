@@ -1,6 +1,17 @@
 #!/bin/sh
-# chkconfig: 2345 20 80
-# description: Handle tomcat instance <%= tomcat_name %>
+# Handle tomcat instance <%= tomcat_name %>
+
+### BEGIN INIT INFO
+# Provides:          <%= tomcat_name %>
+# Required-Start:    $local_fs $remote_fs $syslog $named $network $time
+# Required-Stop:     $local_fs $remote_fs $syslog $named $network
+# Should-Start:      postgresql mysql vectorwise
+# Should-Stop:       postgresql mysql vectorwise
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Handle tomcat instance <%= tomcat_name %>
+# Description:       Puppet managed tomcat instance
+### END INIT INFO
 
 # file managed by puppet
 

@@ -21,7 +21,6 @@ class tomcat::juli {
   }
 
   $baseurl = "${tomcat::params::mirror}/tomcat-6/v${tomcat::params::version}/bin"
-$tomcat_home = "/opt/apache-tomcat-${tomcat::params::version}"
   file { "${tomcat_home}/extras/":
     ensure  => directory,
 #    require => File[$tomcat_home],
